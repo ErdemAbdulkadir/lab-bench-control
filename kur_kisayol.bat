@@ -14,6 +14,19 @@ if not defined PYTHONW (
   exit /b 1
 )
 
+rem Gerekli paketler kurulu mu? (pythonw hata gostermez, eksikse kisayol sessizce kapanir)
+for %%D in ("%PYTHONW%") do set "PYEXE=%%~dpDpython.exe"
+"%PYEXE%" -c "import PyQt6, pyvisa, numpy, matplotlib" 2>nul
+if errorlevel 1 (
+  echo Gerekli Python paketleri eksik, kuruluyor...
+  "%PYEXE%" -m pip install -r "%~dp0requirements.txt"
+  if errorlevel 1 (
+    echo HATA: paketler kurulamadi.
+    pause
+    exit /b 1
+  )
+)
+
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "$lnk = Join-Path ([Environment]::GetFolderPath('Desktop')) 'Elektronik Cihaz Kontrol.lnk';" ^
   "$s = (New-Object -ComObject WScript.Shell).CreateShortcut($lnk);" ^
