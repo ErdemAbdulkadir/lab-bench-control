@@ -2,7 +2,7 @@
 
 A Windows desktop app that controls a bench oscilloscope and a programmable power supply from one window, over SCPI / VISA.
 
-I built it during my work as a production test engineer: everyday measurements meant clicking through the front-panel menus of two instruments again and again. This app turns those steps into one-click actions and keeps both instruments on the PC screen.
+Why: the oscilloscope and the power supply took up half of my test bench, and every setting meant reaching over to their front panels. With this app both instruments sit on the shelf above the bench and are controlled from the PC, so the bench stays free for the board under test.
 
 <p align="center">
   <img src="docs/demo.gif" width="432" alt="Top: the app on the PC. Bottom: the instruments reacting at the same moment.">
