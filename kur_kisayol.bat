@@ -1,21 +1,27 @@
 @echo off
-rem Ctrl+Alt+E kisa yollu uygulama kisayolu olusturur (arka plan sureci YOK).
-rem Windows bu kisayolu kendi dinler; basildiginda uygulamayi acar.
-rem Uygulama zaten aciksa tek-ornek kilidi sayesinde pencere one gelir.
-chcp 65001 >nul
-set PYTHONW=%LocalAppData%\Programs\Python\Python313\pythonw.exe
-if not exist "%PYTHONW%" set PYTHONW=pythonw.exe
+rem Masaustune "Elektronik Cihaz Kontrol" kisayolu olusturur (Ctrl+Alt+E ile acilir).
+rem Arka planda surec calismaz; kisayol tusunu Windows dinler.
+rem Uygulama zaten aciksa yeni kopya acilmaz, mevcut pencere one gelir.
+setlocal
+set "APP=%~dp0app"
 
-rem Masaustune koy
-set LNK=%USERPROFILE%\Desktop\Elektronik Cihaz Kontrol.lnk
+rem pythonw.exe'yi PATH'ten bul (konsol penceresi acmadan calistirir)
+set "PYTHONW="
+for /f "delims=" %%P in ('where pythonw.exe 2^>nul') do if not defined PYTHONW set "PYTHONW=%%P"
+if not defined PYTHONW (
+  echo HATA: pythonw.exe bulunamadi. Python'u kurup PATH'e ekleyin.
+  pause
+  exit /b 1
+)
 
-powershell -NoProfile -Command ^
-  "$s = (New-Object -ComObject WScript.Shell).CreateShortcut('%LNK%');" ^
-  "$s.TargetPath = '%PYTHONW%';" ^
-  "$s.Arguments = '\"%~dp0app\main.py\"';" ^
-  "$s.WorkingDirectory = '%~dp0app';" ^
-  "$s.IconLocation = '%~dp0app\assets\app_icon.ico';" ^
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "$lnk = Join-Path ([Environment]::GetFolderPath('Desktop')) 'Elektronik Cihaz Kontrol.lnk';" ^
+  "$s = (New-Object -ComObject WScript.Shell).CreateShortcut($lnk);" ^
+  "$s.TargetPath = $env:PYTHONW;" ^
+  "$s.Arguments = '\"' + (Join-Path $env:APP 'main.py') + '\"';" ^
+  "$s.WorkingDirectory = $env:APP;" ^
+  "$s.IconLocation = (Join-Path $env:APP 'assets\app_icon.ico');" ^
   "$s.HotKey = 'Ctrl+Alt+E';" ^
-  "$s.Save()"
-echo Kisayol olusturuldu: %LNK%
+  "$s.Save();" ^
+  "Write-Host ('Kisayol olusturuldu: ' + $lnk)"
 pause

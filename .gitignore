@@ -21,3 +21,6 @@ ornekCode/
 
 # Videolar
 *.mp4
+
+# Calisma zamani loglari
+*.log

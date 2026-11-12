@@ -71,9 +71,12 @@ pip install -r requirements.txt
 python app/main.py
 ```
 
+On first launch the app adds a Start Menu shortcut with the Ctrl+Alt+E hotkey.
+
 Optional:
-- `build_exe.bat` builds a standalone `.exe` with PyInstaller
-- `kur_kisayol.bat` adds a desktop shortcut with the Ctrl+Alt+E hotkey
+- `build_exe.bat` builds a Windows executable with PyInstaller (`dist\ElektronikCihazKontrol\`, needs `pip install pyinstaller`)
+- `kur_kisayol.bat` adds the same shortcut to the desktop
+- `kur_hotkey.bat` starts a small background hotkey listener at Windows startup, a fallback if the shortcut hotkey does not work
 
 ## Project structure
 
