@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Ctrl+E global kisayol izleyicisi.
-Arka planda calisir (penceresi yok), Ctrl+E basinca:
+Ctrl+Alt+E global kisayol izleyicisi.
+Arka planda calisir (penceresi yok), Ctrl+Alt+E basinca:
   - Uygulama kapaliysa -> baslat.pyw ile acar
   - Uygulama aciksa    -> penceresini one getirir
 
@@ -17,7 +17,7 @@ from datetime import datetime
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 PENCERE_ADI = "Elektronik Cihaz Kontrol"   # ana pencere basliginin basi
-MOD = 0x0006          # MOD_CONTROL | MOD_ALT  (0x0001=ALT, 0x0002=CTRL, 0x0004=SHIFT, 0x0008=WIN)
+MOD = 0x0003          # MOD_ALT | MOD_CONTROL = Ctrl+Alt  (0x0001=ALT, 0x0002=CTRL, 0x0004=SHIFT, 0x0008=WIN)
 TUS = 0x45            # 'E'
 HOTKEY_ID = 1
 
