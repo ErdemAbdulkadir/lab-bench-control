@@ -36,10 +36,17 @@ Connected instruments are recognised by their USB vendor ID. Other SCPI instrume
 - Pulls the scope screen into a window on the PC
 - Move the X1 / X2 / Y1 / Y2 cursors with arrow keys or by dragging them on the image; values update live
 
-**Quality of life**
-- Mini mode: a small always-on-top window that shows the active supply channels
-- Command log: every SCPI command sent and every reply received
-- Ctrl+Alt+E shortcut to open or focus the app
+**Working next to other programs**
+- **Mini mode:** the app shrinks to a small icon that stays on top of every window. While a supply channel is on, the icon also shows that channel's live voltage and current, so you can keep an eye on the board while using other software. Click the icon to bring the full window back, drag it to move it.
+- **Always on top:** keeps the full window above other applications.
+- **Command log:** every SCPI command sent and every reply received.
+- **Ctrl+Alt+E** opens the app, or brings it to the front if it is already running (only one copy runs at a time).
+
+<p align="center">
+  <img src="docs/mini-mode.png" width="380" alt="Mini mode with two active channels">
+  <br>
+  <sub>Mini mode with CH1 and CH2 on (example values)</sub>
+</p>
 
 <p align="center">
   <img src="docs/power-supply-tab.png" width="800" alt="Power supply tab">

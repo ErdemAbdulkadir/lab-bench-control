@@ -110,8 +110,11 @@ class DeviceBar(QWidget):
         """Cikista arka plan islerini kisa surede bekle (abort onleme)."""
         for attr in ("_scan_job", "_conn_job"):
             job = getattr(self, attr, None)
-            if job is not None and job.isRunning():
-                job.wait(2000)
+            try:
+                if job is not None and job.isRunning():
+                    job.wait(2000)
+            except RuntimeError:
+                pass  # is bitmis ve Qt nesnesi silinmis; beklenecek bir sey yok
 
     def add_button(self, text: str) -> QPushButton:
         """Tara butonunun yanina ek buton ekler (IDN testi vb.)."""
